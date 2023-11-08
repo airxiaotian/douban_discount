@@ -7,7 +7,7 @@ WORKDIR /app
 # 复制项目文件到容器中
 COPY ./src /app/src
 COPY ./requirement.txt /app/requirement.txt
-
+# RUN apt-get install libxml2-dev libxslt-dev python-dev
 # 安装虚拟环境工具
 RUN pip install virtualenv
 
@@ -16,6 +16,7 @@ RUN python -m venv venv
 RUN . venv/bin/activate
 
 # 安装项目依赖项
+RUN pip install --upgrade pip
 RUN pip install -r requirement.txt
 
 # 定义容器启动命令，运行您的 Python 项目
